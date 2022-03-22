@@ -48,15 +48,13 @@ describe("Voltz / Uniswap additional use grant simulation", async () => {
     const TTL: number = 0;
 
     const NODE: string = namehash("v3-core-license-grants.uniswap.eth");
-    const KEY: string = "Voltz Uni v3 Additional Use Grant";
+    const KEY: string = "Celo Uni v3 Additional Use Grant";
     const VALUE: string = `
-    Voltz Labs Technology Limited (“Voltz”) is granted an additional use grant to allow the Voltz DAO to use the Uniswap V3 Core software code (which is made available to Voltz subject to license available at https://github.com/Uniswap/v3-core/blob/main/LICENSE (the “Uniswap Code”)).  	
-    As part of this additional use grant, the Voltz DAO receives a limited worldwide license to use the Uniswap Code for the purposes of:
-    creating, deploying and making available aspects of an interest rate swap automated market maker (the “IRS AMM”); 
-    to modify and update the IRS AMM over time; and 
-    deploy the IRS AMM and portions thereof as smart contracts on blockchain-based applications and protocols.  
-    The Voltz DAO is permitted to use subcontractors to do this work.  
-    This license is conditional on Voltz and the Voltz DAO complying with the terms of the Business Source License 1.1, made available at https://github.com/Uniswap/v3-core/blob/main/LICENSE.
+        The Celo Foundation and cLabs (“Celo”) are granted an additional use grant to use the Uniswap V3 Core software code (which is made available to Celo subject to license available at https://github.com/Uniswap/v3-core/blob/main/LICENSE (the “Uniswap Code”)).  	
+    As part of this additional use grant, Celo receives license to use the Uniswap Code for the purposes of a full deployment of the Uniswap Protocol v3 onto the Celo blockchain.
+    The Celo is permitted to use subcontractors to do this work.  
+    This license is conditional on Celo complying with the terms of the Business Source License 1.1, made available at https://github.com/Uniswap/v3-core/blob/main/LICENSE.
+
     `
     const ensRegistryInterface = new Interface(ENS_REGISTRY_ABI);
     const setSubnodeRecordCalldata = ensRegistryInterface.encodeFunctionData("setSubnodeRecord", [NODE_TOP_LEVEL, LABEL, OWNER_UNISWAP_GOVERNANCE_TIMELOCK, RESOLVER_PUBLIC_ENS_RESOLVER, TTL]);
