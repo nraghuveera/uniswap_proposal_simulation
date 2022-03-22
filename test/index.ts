@@ -82,14 +82,14 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
     expect(licenseText).to.eq("");
     expect(subnodeRecordExists).to.eq(false);
     
-    const a16zAddress = "0x2B1Ad6184a6B0fac06bD225ed37C2AbC04415fF4"
+    const michiganAddress = "0x2B1Ad6184a6B0fac06bD225ed37C2AbC04415fF4"
     // delegate votes from whales to the wallet
     await network.provider.request({
       method: "hardhat_impersonateAccount",
-      params: [a16zAddress], // a16z
+      params: [michiganAddress], // michigan
     });
 
-    const a16zSigner = await ethers.getSigner(a16zAddress);
+    const michiganSigner = await ethers.getSigner(michiganAddress);
 
     // get the Uni contract
     const uniAddress = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
@@ -99,14 +99,14 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
     let blockNumber = (await provider.getBlock("latest")).number;
     console.log("blockNumber OLD", blockNumber);
 
-    // check the prior votes of a16z
-    let priorVotesA16Z = await uni.getPriorVotes(a16zAddress, blockNumber - 1)
-    console.log("priorVotesA16Z", priorVotesA16Z)
+    // check the prior votes of michigan
+    let priorVotesMichigan = await uni.getPriorVotes(michiganAddress, blockNumber - 1)
+    console.log("priorVotesMichigan", priorVotesMichigan)
 
-    // transfer ether to a16z to execute the delegation transaction
+    // transfer ether to michigan to execute the delegation transaction
     await wallet.sendTransaction(
       {
-        to: a16zAddress,
+        to: michiganAddress,
         value: ethers.utils.parseEther("1")
       }
     )
@@ -116,7 +116,7 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
     expect(currentProposalCount).to.eq(10);
 
     // make the proposal
-    await governorBravo.connect(a16zSigner).propose(targets, values, sigs, calldatas, description);
+    await governorBravo.connect(michiganSigner).propose(targets, values, sigs, calldatas, description);
 
     currentProposalCount = await governorBravo.proposalCount();
     expect(currentProposalCount).to.eq(11);
@@ -143,7 +143,7 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
       
       await network.provider.request({
         method: "hardhat_impersonateAccount",
-        params: [whaleAddress], // a16z
+        params: [whaleAddress], // michigan
       });
 
       const whaleSigner = await ethers.getSigner(whaleAddress);
@@ -163,7 +163,7 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
 
     await advanceBlockHeight(40320); // fast forward through voting period
 
-    await governorBravo.connect(a16zSigner).queue(11);
+    await governorBravo.connect(michiganSigner).queue(11);
 
     proposalInfo = await governorBravo.proposals(11);
 
@@ -176,7 +176,7 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
 
     await advanceBlockHeight(1) //after changing the time mine one block
 
-    await governorBravo.connect(a16zSigner).execute(11);
+    await governorBravo.connect(michiganSigner).execute(11);
 
     proposalInfo = await governorBravo.proposals(11);
 
