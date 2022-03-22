@@ -11,7 +11,7 @@ import "hardhat";
 
 const { provider } = waffle;
 
-describe("Voltz / Uniswap additional use grant simulation", async () => {
+describe("Celo / Uniswap additional use grant simulation", async () => {
   let wallet: Wallet, other: Wallet;
 
   async function advanceBlockHeight(blocks:number) {
@@ -69,7 +69,7 @@ describe("Voltz / Uniswap additional use grant simulation", async () => {
     const values = [0, 0];
     const sigs = ['', ''];
     const calldatas = [setSubnodeRecordCalldata, setTextCalldata];
-    const description = "Voltz Additional Use Grant";
+    const description = "Celo Additional Use Grant";
     
     const ensPublicResolver = new Contract(PUBLIC_ENS_RESOLVER_ADDRESS, ENS_PUBLIC_RESOLVER_ABI, provider);
     let licenseText = await ensPublicResolver.text(NODE, KEY)
