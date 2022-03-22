@@ -82,7 +82,7 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
     expect(licenseText).to.eq("");
     expect(subnodeRecordExists).to.eq(false);
     
-    const michiganAddress = "0x2B1Ad6184a6B0fac06bD225ed37C2AbC04415fF4"
+    const michiganAddress = "0x13BDaE8c5F0fC40231F0E6A4ad70196F59138548"
     // delegate votes from whales to the wallet
     await network.provider.request({
       method: "hardhat_impersonateAccount",
