@@ -27,9 +27,13 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/<key>",
-        blockNumber: 14269579
+        //@ts-ignore
+        url: process.env.MAINNET_URL,
+        blockNumber: 14610481
       }
+    },
+    'truffle-dashboard': {
+      url: "http://localhost:24012/rpc"
     }
   },
   gasReporter: {
