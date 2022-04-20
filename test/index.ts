@@ -198,7 +198,7 @@ describe("Celo / Uniswap additional use grant simulation", async () => {
 
     await governorBravo.connect(michiganSigner).queue(15);
 
-    proposalInfo = await governorBravo.proposals(11);
+    proposalInfo = await governorBravo.proposals(15);
 
     console.log(proposalInfo);
 
